@@ -16,6 +16,12 @@ app.get('/:room', (req, res) => {
     res.render('room',{roomId: req.params.room})
 })
 
+io.on('connection', socket => {
+    socket.on('join-room', (roomId, userId) => {
+        console.log(roomId, userId)
+    })
+})
+
 server.listen(3000, () => {
     console.log('Server listening on port 3000')
 })
